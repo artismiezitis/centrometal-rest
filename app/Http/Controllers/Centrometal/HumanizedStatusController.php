@@ -17,10 +17,13 @@ class HumanizedStatusController extends StatusController
         'B_Oxy1' => ['oxygen_in_flue_gases', 'Oxygen in flue gases %'],
 
 
-        'B_P3' => ['water_boilter_pump', 'Water boiler pump', [
+        'B_P3' => ['water_boiler_pump', 'Water boiler pump', [
             'values' => ['off', 'on']
         ]],
         'B_P2' => ['heating_circuit_pump', 'Heating circuit pump', [
+            'values' => ['off', 'on']
+        ]],
+        'B_P1' => ['boiler_pump', 'Boiler pump', [
             'values' => ['off', 'on']
         ]],
 
@@ -78,7 +81,14 @@ class HumanizedStatusController extends StatusController
             unset($data[$source_key]);
         }
 
+
+        $responseInstallationData = new InstallationDataController;
+        $boiler = json_decode($responseInstallationData->index(env('CENTROMETAL_INSTALLATION_ID')), true);
+
         return [
+            'boiler'  => [
+                'model'  => $boiler['_product'],
+            ],
             'params' => $values
         ];
 
