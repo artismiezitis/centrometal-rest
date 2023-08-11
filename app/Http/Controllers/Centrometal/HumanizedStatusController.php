@@ -7,20 +7,39 @@ use App\Http\Controllers\Controller;
 class HumanizedStatusController extends StatusController
 {
     private $status_mapping = [
+        'B_Tk1' => ['boiler_temperature', 'Boiler temperature'],
         'B_Tptv1' => ['water_boiler_temperature', 'Water boiler temperature'],
-        'B_Tak1_1' => ['accumulation_tank_top_temp', 'Accumulation tank top temperature'],
-        'B_Tak2_1' => ['accumulation_tank_bottom_temp', 'Accumulation tank Bottom temperature'],
-        'B_Tdpl1' => ['chimney_temperature', 'Chimney temperature'],
-        'B_razina' => ['pellet_level', 'Level of fuel pellets', [
-            'values' => ['low', 'medium', 'full']
-        ]], /*0 low, 1 medium, 2 full */
-        'B_Oxy1' => ['chimney_oxygen_sensor', 'Chimney oxygen sensor'],
-        'B_gri' => ['burner_heater', 'Burner heater', [
+        'B_Tak1_1' => ['accumulation_tank_top_temperature', 'Accumulation tank top temperature'],
+        'B_Tak2_1' => ['accumulation_tank_bottom_temperature', 'Accumulation tank Bottom temperature'],
+        'B_Tpov1' => ['flow_temperature', 'Flow temperature'],
+        'B_Tdpl1' => ['flue_gas_tmperature', 'Flue gas temperature'],
+
+        'B_Oxy1' => ['oxygen_in_flue_gases', 'Oxygen in flue gases %'],
+
+
+        'B_P3' => ['water_boilter_pump', 'Water boiler pump', [
             'values' => ['off', 'on']
         ]],
+        'B_P2' => ['heating_circuit_pump', 'Heating circuit pump', [
+            'values' => ['off', 'on']
+        ]],
+
+        'B_gri' => ['electric_heater', 'Electric heater', [
+            'values' => ['off', 'on']
+        ]],
+        'B_fan' => ['fan_operation', 'Fan status', [
+            'values' => ['off'],
+            'default_value' => 'on'
+        ]],
+
         'B_FotV' => ['flame', 'Flame', [
             'values' => [1001 => 'off'],
             'default_value' => 'on'
+        ]],
+
+
+        'B_razina' => ['pellet_level', 'Level of fuel pellets', [
+            'values' => ['low', 'medium', 'full']
         ]]
     ];
 
@@ -56,6 +75,7 @@ class HumanizedStatusController extends StatusController
                 'time' => $data[$source_key]['ut']
             ];
 
+            unset($data[$source_key]);
         }
 
         return $values;
