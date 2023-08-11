@@ -78,6 +78,9 @@ class HumanizedStatusController extends StatusController
             unset($data[$source_key]);
         }
 
-        return $values;
+        return [
+            'params' => $values
+        ];
+
     }
 }
