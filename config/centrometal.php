@@ -4,7 +4,7 @@ use GuzzleHttp\Cookie\CookieJar;
 
 return [
     'username' => env('CENTROMETAL_USERNAME'),
-    'password' => env('CENTROMETAL_UPASSWORD'),
+    'password' => env('CENTROMETAL_PASSWORD'),
 
     'cookie_path' => 'centrometal_cookie.txt',
     'cookie_renew' => 60,

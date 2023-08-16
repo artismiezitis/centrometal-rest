@@ -17,7 +17,6 @@ class CentrometalController extends Controller
 
         $session = new AuthCookieController;
 
-
         return Http::withOptions([
             'cookies' => CookieJar::fromArray([
                 'PHPSESSID' => $session->index()

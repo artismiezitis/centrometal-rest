@@ -28,7 +28,7 @@ class LoginController extends Controller
         preg_match($pattern, $cookies[0], $matches);
         $PHPSESSID = $matches[1];
 
-        $response = $client->post(config('centrometal.api.login'), [
+        $client->post(config('centrometal.api.login'), [
             'cookies' => CookieJar::fromArray([
                 'PHPSESSID' => $matches[1]
             ], config('centrometal.api.domain')),
@@ -38,6 +38,7 @@ class LoginController extends Controller
                 '_password' => config('centrometal.password')
             ],
         ]);
+
 
         if (Storage::disk('local')->exists(config('centrometal.cookie_path'))) {
             Storage::disk('local')->delete(config('centrometal.cookie_path'));
