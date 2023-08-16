@@ -2,7 +2,7 @@
 
 * Login in portal.centrometal.hr
 * Get PHPSESSID Cookie value.
-* Update .env and set CENTROMETAL_SESSION_ID //mandatory variable
+* Update .env and set CENTROMETAL_USERNAME and CENTROMETAL_PASSWORD
     * update .env and set CENTROMETAL_INSTALLATION_ID to escape extra requests for installationId //optional variable
 * composer install
 * composer update

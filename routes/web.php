@@ -8,6 +8,8 @@ use App\Http\Controllers\Centrometal\StatusController;
 use App\Http\Controllers\Centrometal\UserController;
 use App\Http\Controllers\Centrometal\ErrorsController;
 use App\Http\Controllers\Centrometal\HumanizedStatusController;
+use App\Http\Controllers\Centrometal\LoginController;
+use App\Http\Controllers\Centrometal\AuthCookieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,8 @@ Route::prefix('centrometal')->group(function () {
     Route::get('/wdata', [WdataController::class, 'index']);
     Route::get('/user', [UserController::class, 'index']);
     Route::get('/errors', [ErrorsController::class, 'index']);
+    Route::get('/login', [LoginController::class, 'index']);
+    Route::get('/cookie', [AuthCookieController::class, 'index']);
 
 
 });

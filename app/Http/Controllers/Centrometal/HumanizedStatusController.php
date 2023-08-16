@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Centrometal;
 
 use App\Http\Controllers\Controller;
 
-class HumanizedStatusController extends StatusController
+class HumanizedStatusController extends CentrometalController
 {
     private $status_mapping = [
         'B_Tk1' => ['boiler_temperature', 'Boiler temperature'],
@@ -48,7 +48,9 @@ class HumanizedStatusController extends StatusController
 
     public function data()
     {
-        $data = current(json_decode($this->index(
+        $statusController = new StatusController;
+
+        $data = current(json_decode($statusController->index(
              [env('CENTROMETAL_INSTALLATION_ID')]
         ), true))['params'];
 

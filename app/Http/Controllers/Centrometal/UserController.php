@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Cookie\CookieJar;
 
-class UserController extends Controller
+class UserController extends CentrometalController
 {
     public function index($userId = null)
     {
@@ -20,12 +20,7 @@ class UserController extends Controller
             $userId = $installationData['owner'];
         }
 
-        $response = Http::withOptions([
-            'cookies' => config('centrometal.cookies'),
-            'headers' => [
-                'Content-Type' => 'application/json'
-            ],
-        ])->post(config('centrometal.api.user').$userId);
+        $response = $this->_response(config('centrometal.api.user').$userId);
 
         return $response->body();
     }

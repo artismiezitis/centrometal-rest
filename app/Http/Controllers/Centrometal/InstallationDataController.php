@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Centrometal;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
-class InstallationDataController extends Controller
+class InstallationDataController extends CentrometalController
 {
     public function index($installationId = null)
     {
@@ -19,12 +19,7 @@ class InstallationDataController extends Controller
             $installationId = $installationData['installations'][0]['value'];
         }
 
-        $response = Http::withOptions([
-            'cookies' => config('centrometal.cookies'),
-            'headers' => [
-                'Content-Type' => 'application/json'
-            ],
-        ])->post(config('centrometal.api.installation_data').$installationId);
+        $response = $this->_response(config('centrometal.api.installation_data').$installationId);
 
         return $response->body();
     }

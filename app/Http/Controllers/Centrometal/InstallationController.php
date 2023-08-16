@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Centrometal;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
-class InstallationController extends Controller
+class InstallationController extends CentrometalController
 {
     public function index()
     {
-        $response = Http::withOptions([
-            'cookies' => config('centrometal.cookies')
-        ])->post(config('centrometal.api.installation'));
+
+        $response = $this->_response(config('centrometal.api.installation'));
 
         return $response->body();
     }

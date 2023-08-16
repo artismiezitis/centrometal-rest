@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Centrometal;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
-class ErrorsController extends Controller
+class ErrorsController extends CentrometalController
 {
     public function index($installationId = null)
     {
@@ -19,12 +19,9 @@ class ErrorsController extends Controller
             $installationId = $installationData['installations'][0]['value'];
         }
 
-        $response = Http::withOptions([
-            'cookies' => config('centrometal.cookies'),
-            'headers' => [
-                'Content-Type' => 'application/json'
-            ],
-        ])->post(config('centrometal.api.errors').$installationId);
+        $response = $this->_response(
+            config('centrometal.api.errors').$installationId
+        );
 
         return $response->body();
     }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Centrometal;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
-class WdataController extends Controller
+class WdataController extends CentrometalController
 {
     public function index($serialNumber = null)
     {
@@ -16,12 +16,7 @@ class WdataController extends Controller
             $serialNumber = $installationData['serialNumber'];
         }
 
-        $response = Http::withOptions([
-            'cookies' => config('centrometal.cookies'),
-            'headers' => [
-                'Content-Type' => 'application/json'
-            ],
-        ])->post(config('centrometal.api.wdata_parameter_list').$serialNumber);
+        $response = $this->_response(config('centrometal.api.wdata_parameter_list').$serialNumber);
 
         return $response->body();
     }
